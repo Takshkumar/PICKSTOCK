@@ -1,4 +1,85 @@
-/* Body and container */
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+  /* Show immediately when page starts loading */
+  opacity: 1;
+  visibility: visible;
+}
+
+.loading-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Fast navigation - skip animations */
+.fast-nav body,
+.fast-nav header,
+.fast-nav .container,
+.fast-nav .featured-image,
+.fast-nav h2,
+.fast-nav p,
+.fast-nav .buttons,
+.fast-nav footer,
+.fast-nav nav a,
+.fast-nav .logo {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Completely disable all animations for fast navigation */
+.fast-nav * {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}
+
+/* Make loading screen faster for better UX */
+.loading-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #0c71f2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  position: absolute;
+  bottom: 40%;
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Page content fade-in animation */
 body {
   font-family: 'Inter', 'Noto Sans', sans-serif;
   background-image: url('website images/web bg.png');
@@ -13,18 +94,51 @@ body {
   transition: background 0.5s;
 }
 
-.container {
-  max-width: 960px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  align-items: center;
-  position: relative;
-  z-index: 1;
+/* Only apply animations to home page */
+body:has(.featured-image) {
+  opacity: 0;
+  animation: fadeIn 1.2s ease-in-out 0.5s forwards;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header fade-in animation */
+header {
+    display: flex;
+  justify-content: space-between;
+    align-items: center;
+  padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+/* Only apply header animation to home page */
+body:has(.featured-image) header {
+  opacity: 0;
+  animation: slideDown 0.8s ease-out 0.8s forwards;
+}
+
+/* Background color transitions for category cards */
 body:has(.nature-card:hover),
 body:has(.nature-card:focus) {
   background-image:
@@ -143,19 +257,18 @@ header, footer {
   content: none !important;
 }
 
-/* Header */
-header {
-    display: flex;
-  justify-content: space-between;
-    align-items: center;
-  padding: 1rem 2rem;
-    background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+/* Logo animation */
 .logo {
   font-weight: 900;
   font-size: 1.5rem;
@@ -164,17 +277,44 @@ header {
   cursor: pointer;
   user-select: none;
   text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: color 0.3s ease;
 }
 
+/* Only apply logo animation to home page */
+body:has(.featured-image) .logo {
+  opacity: 0;
+  animation: logoFadeIn 0.6s ease-out 1.2s forwards;
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Navigation links staggered animation */
 nav a {
   margin-left: 2rem;
     text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
-  color: #334155;
+  color: #1e293b;
   padding: 0.25rem 0;
   position: relative;
   transition: color 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Only apply navigation animations to home page */
+body:has(.featured-image) nav a {
+  opacity: 0;
+  animation: navFadeIn 0.5s ease-out 1.4s forwards;
 }
 
 nav a:hover,
@@ -198,6 +338,196 @@ nav a:hover::after,
 nav a.active::after {
   width: 100%;
 }
+
+nav a:nth-child(1) { animation-delay: 1.4s; }
+nav a:nth-child(2) { animation-delay: 1.5s; }
+nav a:nth-child(3) { animation-delay: 1.6s; }
+nav a:nth-child(4) { animation-delay: 1.7s; }
+nav a:nth-child(5) { animation-delay: 1.8s; }
+nav a:nth-child(6) { animation-delay: 1.9s; }
+nav a:nth-child(7) { animation-delay: 2.0s; }
+
+@keyframes navFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Main content fade-in */
+.container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Only apply container animation to home page */
+body:has(.featured-image) .container {
+  opacity: 0;
+  animation: contentFadeIn 1s ease-out 1.6s forwards;
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Featured image animation */
+.featured-image {
+  width: 100%;
+  max-width: 10000px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(12,113,242,0.15);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Only apply featured image animation to home page */
+body:has(.featured-image) .featured-image {
+  opacity: 0;
+  animation: imageFadeIn 1.2s ease-out 2.0s forwards;
+}
+
+@keyframes imageFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Text animations */
+h2 {
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: #0f172a;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+    text-align: center;
+  max-width: 700px;
+  line-height: 1.2;
+}
+
+p {
+  font-size: 1.125rem;
+  max-width: 700px;
+  color: #475569;
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Only apply text animations to home page */
+body:has(.featured-image) h2 {
+  opacity: 0;
+  animation: textFadeIn 0.8s ease-out 2.2s forwards;
+}
+
+body:has(.featured-image) p {
+  opacity: 0;
+  animation: textFadeIn 0.8s ease-out 2.4s forwards;
+}
+
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Buttons animation */
+.buttons {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Only apply buttons animation to home page */
+body:has(.featured-image) .buttons {
+  opacity: 0;
+  animation: buttonsFadeIn 0.8s ease-out 2.6s forwards;
+}
+
+@keyframes buttonsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer animation */
+footer {
+  padding: 1rem 2rem;
+  background: #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #64748b;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Only apply footer animation to home page */
+body:has(.featured-image) footer {
+  opacity: 0;
+  animation: footerFadeIn 0.8s ease-out 2.8s forwards;
+}
+
+@keyframes footerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Remove the container:has effect if present */
+.container:has(.nature-card:hover),
+.container:has(.nature-card:focus),
+.container:has(.nature-card:hover)::after,
+.container:has(.nature-card:focus)::after {
+  background: none !important;
+  transition: none !important;
+  content: none !important;
+}
+
+
 
 /* Featured Image */
 .featured-image {
@@ -359,6 +689,13 @@ footer {
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(25px) saturate(200%);
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.7);
   }
   nav {
     display: flex;
@@ -862,6 +1199,13 @@ body {
     flex-direction: column;
     gap: 0.5rem;
     padding: 0.5rem 0.5rem 0.2rem 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(35px) saturate(250%);
+    -webkit-backdrop-filter: blur(35px) saturate(250%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+      0 10px 40px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
   }
   .logo {
     font-size: 1.1rem;
@@ -990,12 +1334,18 @@ body {
     top: 100%;
     left: 0;
     width: 100vw;
-    background: #fff;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
     z-index: 110;
     padding: 1rem 0;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: none;
   }
   nav#main-nav.open {
     display: flex;

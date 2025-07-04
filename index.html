@@ -5,8 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PICSTOCK - Home</title>
   <link rel="stylesheet" href="styles.css">
+  <!-- Preload other pages for faster navigation -->
+  <link rel="preload" href="browse.html" as="document">
+  <link rel="preload" href="categories.html" as="document">
+  <link rel="preload" href="featured.html" as="document">
+  <link rel="preload" href="submit.html" as="document">
+  <link rel="preload" href="gallery.html" as="document">
+  <link rel="preload" href="licenses.html" as="document">
 </head>
 <body>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">PICSTOCK</div>
+  </div>
+
         <header>
     <a href="index.html" class="logo">PICSTOCK</a>
     <button class="nav-toggle" aria-label="Open navigation" aria-controls="main-nav" aria-expanded="false">
@@ -50,6 +63,30 @@
   </main>
 
   <script>
+    // --- Loading Screen ---
+    // Show loading screen only on home page
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if this is a fresh page load (not navigation)
+      if (!sessionStorage.getItem('pageLoaded')) {
+        sessionStorage.setItem('pageLoaded', 'true');
+        // Show loading screen for fresh loads only
+        setTimeout(function() {
+          const loadingScreen = document.getElementById('loadingScreen');
+          if (loadingScreen) {
+            loadingScreen.classList.add('fade-out');
+          }
+        }, 1000);
+      } else {
+        // For navigation back to home, hide loading screen immediately
+        const loadingScreen = document.getElementById('loadingScreen');
+        if (loadingScreen) {
+          loadingScreen.style.display = 'none';
+        }
+        // Skip animations for navigation
+        document.body.classList.add('fast-nav');
+      }
+    });
+
     // --- Simple Slideshow for Featured Images ---
     const slideshowImages = [
       'website images/hero.jpg',
