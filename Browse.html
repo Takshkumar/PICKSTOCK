@@ -9,7 +9,10 @@
 <body>
   <header>
     <div class="logo">PICSTOCK</div>
-    <nav>
+    <button class="nav-toggle" aria-label="Open navigation" aria-controls="main-nav" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
+    <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="browse.html" class="active">Browse Photos</a>
       <a href="categories.html">Categories</a>
@@ -115,5 +118,15 @@
     </div>
     <p>© 2025 PICSTOCK. All rights reserved.</p>
   </footer>
+  <script>
+    // Hamburger menu toggle for mobile
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('main-nav');
+    navToggle.addEventListener('click', function() {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', !expanded);
+      nav.classList.toggle('open');
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 Not Found - PICSTOCK</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">PICSTOCK</div>
+    <button class="nav-toggle" aria-label="Open navigation" aria-controls="main-nav" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
+    <nav id="main-nav">
+      <a href="index.html">Home</a>
+      <a href="browse.html">Browse Photos</a>
+      <a href="categories.html">Categories</a>
+      <a href="featured.html">Featured Photographers</a>
+      <a href="submit.html">Submit a Photo</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="licenses.html">Photo Licenses</a>
+    </nav>
+  </header>
+  <main class="container">
+    <h2>404 - Page Not Found</h2>
+    <p>The page you are looking for is not available yet.</p>
+    <p><strong>Our developer is working on it!</strong></p>
+  </main>
+  <footer>
+    <div class="footer-links">
+      <a href="contact.html">CONTACT US</a>
+      <a href="terms.html">TERMS OF USE</a>
+      <a href="privacy.html">PRIVACY POLICY</a>
+    </div>
+    <div class="social-icons">
+      <a href="#" aria-label="Facebook">Facebook</a>
+      <a href="#" aria-label="Twitter">Twitter</a>
+      <a href="#" aria-label="Instagram">Instagram</a>
+    </div>
+    <p>© 2025 PICSTOCK. All rights reserved.</p>
+  </footer>
+  <script>
+    // Hamburger menu toggle for mobile
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('main-nav');
+    navToggle.addEventListener('click', function() {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', !expanded);
+      nav.classList.toggle('open');
+    });
+  </script>
+</body>
+</html> 

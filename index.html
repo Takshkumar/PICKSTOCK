@@ -9,15 +9,18 @@
 <body>
         <header>
     <div class="logo">PICSTOCK</div>
-            <nav>
-      <a href="index.html" class="active">Home</a>
+    <button class="nav-toggle" aria-label="Open navigation" aria-controls="main-nav" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
+    <nav id="main-nav">
+      <a href="index.html">Home</a>
       <a href="browse.html">Browse Photos</a>
       <a href="categories.html">Categories</a>
       <a href="featured.html">Featured Photographers</a>
       <a href="submit.html">Submit a Photo</a>
       <a href="gallery.html">Gallery</a>
       <a href="licenses.html">Photo Licenses</a>
-            </nav>
+    </nav>
         </header>
 
   <main class="container">
@@ -84,6 +87,17 @@
       clearInterval(interval);
       interval = setInterval(nextImage, 3000);
     }
+  </script>
+
+  <script>
+    // Hamburger menu toggle for mobile
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('main-nav');
+    navToggle.addEventListener('click', function() {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', !expanded);
+      nav.classList.toggle('open');
+    });
   </script>
 
         <footer>
