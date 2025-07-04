@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>404 Not Found - PICSTOCK</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
@@ -41,13 +41,13 @@
     <p>© 2025 PICSTOCK. All rights reserved.</p>
   </footer>
   <script>
-    // Hamburger menu toggle for mobile
-    const navToggle = document.querySelector('.nav-toggle');
-    const nav = document.getElementById('main-nav');
-    navToggle.addEventListener('click', function() {
-      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', !expanded);
-      nav.classList.toggle('open');
+    // --- Hamburger Menu Toggle for Mobile Navigation ---
+    const navToggleButton = document.querySelector('.nav-toggle');
+    const mainNav = document.getElementById('main-nav');
+    navToggleButton.addEventListener('click', function() {
+      const isExpanded = navToggleButton.getAttribute('aria-expanded') === 'true';
+      navToggleButton.setAttribute('aria-expanded', !isExpanded);
+      mainNav.classList.toggle('open');
     });
   </script>
 </body>
