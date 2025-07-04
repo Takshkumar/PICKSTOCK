@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PICSTOCK - Home</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+        <header>
+    <div class="logo">PICSTOCK</div>
+            <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="browse.html">Browse Photos</a>
+      <a href="categories.html">Categories</a>
+      <a href="featured.html">Featured Photographers</a>
+      <a href="submit.html">Submit a Photo</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="licenses.html">Photo Licenses</a>
+            </nav>
+        </header>
+
+  <main class="container">
+    <div class="featured-image slideshow" style="position: relative; margin-top: 2.5rem;">
+      <button id="prev-btn" aria-label="Previous image" class="slideshow-arrow">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M13 16L8 10L13 4" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <img id="slideshow-img" src="website images/hero.jpg" alt="Featured Stunning Landscape" />
+      <button id="next-btn" aria-label="Next image" class="slideshow-arrow">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M7 4L12 10L7 16" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+            </div>
+
+    <h2>DISCOVER STUNNING PHOTOGRAPHY</h2>
+    <p>
+      PICSTOCK is a premium stock photography platform offering high-quality, royalty-free images for commercial and personal use. Our curated collection features work from talented photographers worldwide, providing you with the perfect visuals for your creative projects. Browse our extensive library of professional photographs across multiple categories, or contribute your own work to our growing community.
+    </p>
+
+    <div class="buttons">
+      <a href="browse.html" class="btn btn-primary">EXPLORE GALLERY</a>
+      <a href="submit.html" class="btn btn-secondary">BECOME A CONTRIBUTOR</a>
+    </div>
+  </main>
+
+  <script>
+    const images = [
+      'website images/hero.jpg',
+      'website images/hero (1).jpg',
+      'website images/hero (2).jpg',
+      'website images/hero (3).jpg',
+      'website images/hero (4).jpg',
+      'website images/hero (5).jpg',
+      'website images/hero (6).jpg'
+    ];
+    let current = 0;
+    const imgElement = document.getElementById('slideshow-img');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let interval = setInterval(nextImage, 3000);
+
+    function showImage(idx) {
+      current = (idx + images.length) % images.length;
+      imgElement.src = images[current];
+    }
+    function nextImage() {
+      showImage(current + 1);
+    }
+    function prevImage() {
+      showImage(current - 1);
+    }
+    nextBtn.addEventListener('click', () => {
+      nextImage();
+      resetInterval();
+    });
+    prevBtn.addEventListener('click', () => {
+      prevImage();
+      resetInterval();
+    });
+    function resetInterval() {
+      clearInterval(interval);
+      interval = setInterval(nextImage, 3000);
+    }
+  </script>
+
+        <footer>
+    <div class="footer-links">
+      <a href="contact.html">CONTACT US</a>
+      <a href="terms.html">TERMS OF USE</a>
+      <a href="privacy.html">PRIVACY POLICY</a>
+            </div>
+    <div class="social-icons">
+      <a href="#" aria-label="Facebook">Facebook</a>
+      <a href="#" aria-label="Twitter">Twitter</a>
+      <a href="#" aria-label="Instagram">Instagram</a>
+    </div>
+    <p>© 2025 PICSTOCK. All rights reserved.</p>
+  </footer>
+</body>
+</html>

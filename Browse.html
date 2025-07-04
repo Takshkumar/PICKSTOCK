@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PICSTOCK - Browse Photos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">PICSTOCK</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="browse.html" class="active">Browse Photos</a>
+      <a href="categories.html">Categories</a>
+      <a href="featured.html">Featured Photographers</a>
+      <a href="submit.html">Submit a Photo</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="licenses.html">Photo Licenses</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>BROWSE PHOTOS</h2>
+
+    <form class="search-form" role="search" aria-label="Search photos">
+      <input
+        type="search"
+        placeholder="Search for photos"
+        aria-label="Search for photos"
+        name="search"
+        class="search-input"
+      />
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <div class="gallery-grid">
+      <div class="photo-card">
+        <img src="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&w=600" alt="Mountain" />
+        <div class="photo-info">
+          <h3>Mountain</h3>
+          <p>
+            Photo by <a href="https://www.pexels.com/photo/gray-and-brown-mountain-417173/" target="_blank" rel="noopener">Pixabay</a> on Pexels
+          </p>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="https://images.pexels.com/photos/1298684/pexels-photo-1298684.jpeg?auto=compress&w=600" alt="Waves" />
+        <div class="photo-info">
+          <h3>Waves</h3>
+          <p>
+            Photo by <a href="https://www.pexels.com/photo/photography-of-barrel-wave-1298684/" target="_blank" rel="noopener">Daniel Torobekov</a> on Pexels
+          </p>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="https://images.pexels.com/photos/585759/pexels-photo-585759.jpeg?auto=compress&w=600" alt="Sunset" />
+        <div class="photo-info">
+          <h3>Sunset</h3>
+          <p>
+            Photo by <a href="https://www.pexels.com/photo/silhouette-photo-of-a-mountain-585759/" target="_blank" rel="noopener">Pexels</a>
+          </p>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="https://images.pexels.com/photos/32821869/pexels-photo-32821869.jpeg?auto=compress&w=600" alt="Forest Path" />
+        <div class="photo-info">
+          <h3>Forest Path</h3>
+          <p>
+            Photo by <a href="https://www.pexels.com/photo/sunlit-forest-pathway-in-tranquil-woods-32821869/" target="_blank" rel="noopener">Pexels</a>
+          </p>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="https://images.pexels.com/photos/169647/pexels-photo-169647.jpeg?auto=compress&w=600" alt="City Light" />
+        <div class="photo-info">
+          <h3>City Light</h3>
+          <p>
+            Photo by <a href="https://www.pexels.com/photo/raised-building-frame-169647/" target="_blank" rel="noopener">Pexels</a>
+          </p>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="https://images.pexels.com/photos/798916/pexels-photo-798916.jpeg?auto=compress&w=600" alt="Autumn Forest" />
+        <div class="photo-info">
+          <h3>Autumn Forest</h3>
+          <p>
+            Photo by <a href="https://www.pexels.com/photo/yellow-sunset-rays-passing-through-the-trees-798916/" target="_blank" rel="noopener">Pexels</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <nav class="pagination" role="navigation" aria-label="Pagination Navigation">
+      <button aria-label="Previous page" class="page-btn">&laquo;</button>
+      <button class="page-btn active" aria-current="page">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn">4</button>
+      <button class="page-btn">5</button>
+      <button aria-label="Next page" class="page-btn">&raquo;</button>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="contact.html">CONTACT US</a>
+      <a href="terms.html">TERMS OF USE</a>
+      <a href="privacy.html">PRIVACY POLICY</a>
+    </div>
+    <div class="social-icons">
+      <a href="#" aria-label="Facebook">Facebook</a>
+      <a href="#" aria-label="Twitter">Twitter</a>
+      <a href="#" aria-label="Instagram">Instagram</a>
+    </div>
+    <p>© 2025 PICSTOCK. All rights reserved.</p>
+  </footer>
+</body>
+</html>
